@@ -1,0 +1,62 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}File Upload Example{% endblock %}
+
+{% block navbar %}
+    <nav class="navbar navbar-inverse" role="navigation">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('index') }}">Upload</a>
+        </div>
+    </nav>
+{% endblock %}
+
+{% block content %}
+<style>
+.pipeline-item{
+	background:blue;
+	color: white;
+}
+</style>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.1.min.js">
+</script>
+<script type="text/javascript">
+
+	$(document).ready(function(){
+		$("#my-pipleine").each(function(){
+
+		});
+	});
+
+</script>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                Pipeline
+                <br>
+                {{ wtf.quick_form(pform, enctype='multipart/form-data') }}
+                <br>
+                <div id="my-pipeline">
+                {% if pipeline %}
+                	<ol>
+                    {% for op in pipeline %}
+                        <li class="pipeline-item">{{ op }}</li>
+                        <br>
+                    {% endfor %}
+                    </ol>
+                {% endif %}
+                </div>
+            </div>
+            <div class="col-md-2">
+                Parameters
+
+            </div>
+            <div class="col-md-7">
+                {{ wtf.quick_form(uform, enctype='multipart/form-data') }}
+                {% if image %}
+                    <img width="700" src="{{ url_for('static', filename=image) }}">
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
