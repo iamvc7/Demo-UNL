@@ -11,7 +11,7 @@ from math import sqrt
 from skimage.color import rgb2gray
 from decimal import *
 
-img = cv2.imread('img.jpeg')
+img = cv2.imread(sys.argv[1])
 
 hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
 
